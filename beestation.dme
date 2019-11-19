@@ -1371,6 +1371,7 @@
 #include "code\modules\antagonists\disease\disease_event.dm"
 #include "code\modules\antagonists\disease\disease_mob.dm"
 #include "code\modules\antagonists\ert\ert.dm"
+#include "code\modules\antagonists\evil_clone\datum_clone.dm"
 #include "code\modules\antagonists\fugitive\fugitive.dm"
 #include "code\modules\antagonists\fugitive\fugitive_outfits.dm"
 #include "code\modules\antagonists\fugitive\fugitive_ship.dm"

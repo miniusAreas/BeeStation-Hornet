@@ -1821,6 +1821,14 @@ datum/uplink_item/role_restricted/superior_honkrender
 	limited_stock = 2 //you can't use more than two!
 	restricted_roles = list("Shaft Miner")
 
+/datum/uplink_item/role_restricted/experimental_cloner
+	name = "Experimental Cloner Board"
+	desc = "Contains an experimental cloner board and the tools to modify a cloning pod. \
+			Emag the pod to create an army of clones!"
+	item = /obj/item/storage/box/syndie_kit/experimental_cloner
+	cost = 4
+	restricted_roles = list("Geneticist")
+
 /datum/uplink_item/role_restricted/magillitis_serum
 	name = "Magillitis Serum Autoinjector"
 	desc = "A single-use autoinjector which contains an experimental serum that causes rapid muscular growth in Hominidae. \

@@ -202,6 +202,14 @@
 	build_path = /obj/item/circuitboard/machine/clonepod
 	category = list("Medical Machinery")
 
+/datum/design/board/exp_cloner
+	name = "Machine Design (Experimental Clone Pod)"
+	desc = "Allows for the construction of circuit boards used to build an Experimental Cloning Pod."
+	id = "exp_cloner"
+	departmental_flags = DEPARTMENTAL_FLAG_MEDICAL
+	build_path = /obj/item/circuitboard/machine/clonepod/experimental
+	category = list("Medical Machinery")
+
 /datum/design/board/clonescanner
 	name = "Machine Design (Cloning Scanner)"
 	desc = "Allows for the construction of circuit boards used to build a Cloning Scanner."
