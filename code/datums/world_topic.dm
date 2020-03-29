@@ -39,6 +39,25 @@
 
 // TOPICS
 
+/datum/world_topic/heartbeat
+	keyword = "heartbeat"
+	log = FALSE
+
+/datum/world_topic/heartbeat/Run(list/input, addr)
+	to_chat(world, "heartbeat ADDR: [addr]")
+	//Just send a return back saying we're alive
+	return STATUS_ONLINE
+
+/*
+/datum/world_topic/heartbeat_response
+	keyword = "heartbeat_response"
+	log = FALSE
+
+/datum/world_topic/heartbeat_response/Run(list/input, addr)
+	to_chat(world, "heartbeat ADDR: [addr]")
+	//Figure out which server_type it is an update the last_heartbeat_response
+	return STATUS_ONLINE*/
+
 /datum/world_topic/ping
 	keyword = "ping"
 	log = FALSE
