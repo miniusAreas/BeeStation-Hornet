@@ -156,7 +156,7 @@ GLOBAL_VAR(restart_counter)
 	log_runtime(GLOB.revdata.get_log_message())
 
 /world/Topic(T, addr, master, key)
-
+	to_chat(world, "world/Topic() called!")
 	var/list/response[] = list()
 	if (SSfail2topic?.IsRateLimited(addr))
 		response["statuscode"] = 429
