@@ -34,7 +34,7 @@ SUBSYSTEM_DEF(server_manager)
 		server = new()
 		for(var/datum/server_type/C in server_list)
 			WARNING("Creating child server [C.name] of type [C.server_type] on port [C.port]")
-			//startup("[DMB]", "[C.port]", "-trusted", "-close", "-params child-server=1;child-type=[C.server_type];parent-port=[world.port]")
+			startup("[DMB]", "[C.port]", "-trusted", "-close", "-params child-server=1;child-type=[C.server_type];parent-port=[world.port]")
 			//shell("DreamDaemon [DMB] -port [C.port] -trusted -close -params child-server=1;child-type=[C.server_type];parent-port=[world.port]")
 	else
 		var/type_param = text2num(world.params[CHILD_TYPE])
