@@ -49,7 +49,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/map_loading = FALSE	//Are we loading in a new map?
 
 	var/current_runlevel	//for scheduling different subsystems for different stages of the round
-	var/sleep_offline_after_initializations = TRUE
+	var/sleep_offline_after_initializations = FALSE //Needs to be false for the server manager to work properly
 
 	var/static/restart_clear = 0
 	var/static/restart_timeout = 0
