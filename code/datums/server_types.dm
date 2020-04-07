@@ -1,9 +1,3 @@
-#define SERVER_PARENT 	0
-#define SERVER_LAVALAND 1
-
-#define STATUS_OFFLINE	0
-#define STATUS_ONLINE	1
-
 /datum/server_type
 	var/name = "Parent"
 	var/server_type = SERVER_PARENT

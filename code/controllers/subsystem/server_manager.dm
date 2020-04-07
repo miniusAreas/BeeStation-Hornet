@@ -1,8 +1,3 @@
-#define CHILD_SERVER "child-server"
-#define CHILD_TYPE "child-type"
-#define PARENT_PORT "parent-port"
-#define DMB "beestation.dmb"
-
 SUBSYSTEM_DEF(server_manager)
 	name = "Server Manager"
 	init_order = INIT_ORDER_SERVER_MANAGER //This may need to be higher priority
@@ -13,8 +8,6 @@ SUBSYSTEM_DEF(server_manager)
 
 	var/datum/server_type/server
 	var/list/server_list = list()
-
-//TODO: Heartbeat timer. Children should regularly check the status of the parent server in case the child needs to die. Also probably wouldn't hurt for parents to keep an eye on children.
 
 //TODO: Francinum suggested using a goonchat cookie to see if there is a syndication cookie for the player, to kick them to the main server if they attempt to direct-connect to a child. Have a look at /datum/chatOutput/proc/analyzeClientData in code/modules/goonchat/browserOutput.dm
 
@@ -63,10 +56,25 @@ SUBSYSTEM_DEF(server_manager)
 			response = text2num(response)
 			to_chat(world, "RESPONSE: [response] FROM [S.name]")
 
-		//TODO: Keep track of responses, determine if a server is unresponsive, and react accordingly (typically by getting clients to fuck off to the main server and shutting down)
+			if(response)
+				S.heart_failures = 0
+			else
+				S.heart_failures++
 
+			if(S.heart_failures >= S.max_heart_failures)
+				heart_failure(S)
 
-
+/datum/controller/subsystem/server_manager/proc/heart_failure(var/datum/server_type/S)
+	//TODO: handle parent server losing a child. Likely after mob transfers are implemented so we can load their savefile if they reconnect to parent.
+	//TODO: handle child server losing a different child. This is basically future-proofing and shouldn't actually be needed anytime soon.
+	if(S.server_type == SERVER_PARENT)
+		//Just shutdown.
+		for(var/client/C in GLOB.clients)
+			to_chat_immediate(C, "<span class='narsie'>Connection to parent server lost. Shutting down...</span>")
+		Master.Shutdown()
+		log_world("Child server shutdown due to heart failure at [time_stamp()]")
+		shutdown_logging()
+		shutdown()
 
 //TODO: Make this an admin-only verb
 /client/verb/client_to_child()
