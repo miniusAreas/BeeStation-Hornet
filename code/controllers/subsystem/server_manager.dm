@@ -1,3 +1,5 @@
+GLOBAL_LIST_EMPTY(receiving_ckeys)
+
 SUBSYSTEM_DEF(server_manager)
 	name = "Server Manager"
 	init_order = INIT_ORDER_SERVER_MANAGER //This may need to be higher priority
@@ -12,6 +14,8 @@ SUBSYSTEM_DEF(server_manager)
 //TODO: Francinum suggested using a goonchat cookie to see if there is a syndication cookie for the player, to kick them to the main server if they attempt to direct-connect to a child. Have a look at /datum/chatOutput/proc/analyzeClientData in code/modules/goonchat/browserOutput.dm
 
 //TODO (Pipe dream): The main master server no longer handles anything except connections and managing the child servers. This will enable stuff like hot/cold station servers for instant round restarts.
+
+//TODO: Warn connected servers when we're under heavy load and may not be able to respond in a timely manner. Also handle that.
 
 /datum/controller/subsystem/server_manager/Initialize()
 	. = ..()
@@ -76,6 +80,9 @@ SUBSYSTEM_DEF(server_manager)
 		shutdown_logging()
 		shutdown()
 
+/datum/controller/subsystem/server_manager/proc/transfer_mob(var/destination_type) //TODO
+	return
+
 //TODO: Make this an admin-only verb
 /client/verb/client_to_child()
 	set category = "OOC"
@@ -83,3 +90,6 @@ SUBSYSTEM_DEF(server_manager)
 
 	var/datum/server_type/target = input("Please, select a server!", "Connect to child server", null, null) as null|anything in SSserver_manager.server_list
 	usr << link("[target.ip]:[target.port]")
+
+/datum/controller/subsystem/server_manager/proc/send_data(var/destination_type, var/data) //TODO: implement this
+	return
