@@ -1,11 +1,11 @@
 /datum/server_type
 	var/name = "Parent"
-	var/server_type = SERVER_PARENT
+	var/server_type = SERVER_PARENT //This must be unique for each active instance
 	var/ip = "127.0.0.1"
 	var/port
 	var/addr
 	var/parent_port
-	var/list/maps_to_load
+	var/list/maps_to_load //TODO
 	var/enabled = TRUE
 
 	var/status = STATUS_ONLINE
@@ -31,4 +31,4 @@
 	name = "Lavaland"
 	server_type = SERVER_LAVALAND
 	port = 25001
-	maps_to_load = "map_files/Mining/Lavaland.dmm"
+	maps_to_load = "map_files/Mining/Lavaland.dmm" //Not implemented yet
