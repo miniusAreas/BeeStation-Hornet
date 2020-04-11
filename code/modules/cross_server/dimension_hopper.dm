@@ -16,10 +16,10 @@ GLOBAL_LIST_EMPTY(dimension_hoppers)
 
 /obj/machinery/dimension_hopper/Initialize()
 	. = ..()
-	dimension_hoppers += src
+	GLOB.dimension_hoppers += src
 
 /obj/machinery/dimension_hopper/Destroy()
-	dimension_hoppers -= src
+	GLOB.dimension_hoppers -= src
 
 /obj/machinery/dimension_hopper/Bumped(atom/AM) //TODO: Finish this after map_object is implemented
 	if(receiver)

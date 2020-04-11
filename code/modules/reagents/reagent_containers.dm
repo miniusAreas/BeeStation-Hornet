@@ -31,6 +31,56 @@
 	if(list_reagents)
 		reagents.add_reagent_list(list_reagents)
 
+/obj/item/reagent_containers/proc/pack_persistence_data()
+	var/list/all_reagents = reagents.reagent_list
+	var/list/reagents_to_save = list()
+
+	if(reagents)
+		for(var/datum/reagent/R in all_reagents)
+			var/datum/map_reagent_data/reagent_holder = new()
+
+			//reagent_holder.id = R.id
+			reagent_holder.amount = R.volume
+
+			if(R.data.len)
+				var/list/datalist = R.data
+
+				if(islist(datalist))
+					var/list/metadata = list()
+					for(var/V in datalist)
+						if(!istext(datalist[V]) && !isnum(datalist[V]))
+							continue
+						metadata[V] = datalist[V]
+
+					reagent_holder.data = metadata
+				else
+					if(!istext(R.data) && !isnum(R.data))
+						continue
+
+					reagent_holder.data = R.data
+
+			reagents_to_save += reagent_holder
+
+	return reagents_to_save
+
+/obj/item/reagent_containers/proc/unpack_persistence_data(var/list/saved_reagents)
+	if(!reagents)
+		return
+
+	if(isemptylist(saved_reagents))
+		return FALSE
+
+	clearlist(reagents.reagent_list)
+
+	for(var/datum/map_reagent_data/reagent_holder in saved_reagents)
+		var/datum/reagent/new_reagent = reagents.add_reagent(reagent_holder.id, reagent_holder.amount)
+		if(!new_reagent)
+			continue
+		if(reagent_holder.data)
+			new_reagent.data = reagent_holder.data
+
+	return TRUE
+
 /obj/item/reagent_containers/attack_self(mob/user)
 	if(possible_transfer_amounts.len)
 		var/i=0
