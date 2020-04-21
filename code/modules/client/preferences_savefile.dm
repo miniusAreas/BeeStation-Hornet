@@ -135,12 +135,18 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	if(needs_update == -2)		//fatal, can't load any data
 		return 0
 
+
 	//general preferences
 	S["asaycolor"]			>> asaycolor
 	S["ooccolor"]			>> ooccolor
 	S["lastchangelog"]		>> lastchangelog
 	S["UI_style"]			>> UI_style
-	S["runescapechat"]		>> runescapechat
+	// temporary savefile bump
+	if(!(S & "runescapechat"))
+		WRITE_FILE(S["runescapechat"], TRUE)
+		runescapechat >> TRUE
+	else
+		S["runescapechat"]		>> runescapechat
 	S["hotkeys"]			>> hotkeys
 	S["tgui_fancy"]			>> tgui_fancy
 	S["tgui_lock"]			>> tgui_lock
