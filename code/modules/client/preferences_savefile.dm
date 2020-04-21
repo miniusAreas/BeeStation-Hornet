@@ -141,12 +141,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	S["ooccolor"]			>> ooccolor
 	S["lastchangelog"]		>> lastchangelog
 	S["UI_style"]			>> UI_style
-	// temporary savefile bump
-	if(!(S & "runescapechat"))
-		WRITE_FILE(S["runescapechat"], TRUE)
-		runescapechat = TRUE
-	else
-		S["runescapechat"]		>> runescapechat
+	S["runescapechat"]		>> runescapechat
 	S["hotkeys"]			>> hotkeys
 	S["tgui_fancy"]			>> tgui_fancy
 	S["tgui_lock"]			>> tgui_lock
