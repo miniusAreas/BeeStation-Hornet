@@ -312,7 +312,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	message = copytext(message, 1, 160) // no super long messages
 
-	var/mob/living/L = T
 
 	var/image/speech_text/S = new // create invisible object, bind it to speaking mob
 	S.loc = L
