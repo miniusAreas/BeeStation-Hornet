@@ -301,11 +301,11 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	var/image/I = image('icons/mob/talk.dmi', src, "[bubble_type][say_test(message)]", FLY_LAYER)
 
-	INVOKE_ASYNC(GLOBAL_PROC, /.proc/show_speech_text, message, src, speech_bubble_recipients, 40)
+	INVOKE_ASYNC(GLOBAL_PROC, /.proc/show_speech_text, message, message_language, src, speech_bubble_recipients, 40)
 
 	INVOKE_ASYNC(GLOBAL_PROC, /.proc/animate_speechbubble, I, speech_bubble_recipients, 30)
 
-/proc/show_speech_text(message, mob/living/L, var/list/show_to, duration)
+/proc/show_speech_text(message, message_language, mob/living/L, var/list/show_to, duration)
 
 	if(!istype(L))
 		return
@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	S.pixel_y = L.bound_height
 
 	for(var/client/C in show_to)
-		if(C.prefs.runescapechat && C.mob.can_hear())
+		if(C.prefs.runescapechat && C.mob.can_hear() && C.mob.has_language(message_language))
 			C.images += S
 
 	L.chattext.chats += S
@@ -345,7 +345,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		animate(S, alpha = 0, pixel_y = new_y, time = 4)
 		spawn(4)
 			for(var/client/C in show_to)
-				if(C.prefs.runescapechat && C.mob.can_hear())
+				if(C.prefs.runescapechat && C.mob.can_hear() && C.mob.has_language(message_language))
 					C.images -= S
 			L.chattext.chats -= S
 			qdel(S)
