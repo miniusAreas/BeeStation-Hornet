@@ -307,7 +307,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 /proc/show_speech_text(message, mob/living/L, var/list/show_to, duration)
 
-	if(!isliving(T))
+	if(!istype(L))
 		return
 
 	message = copytext(message, 1, 160) // no super long messages
