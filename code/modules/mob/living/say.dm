@@ -336,7 +336,6 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 			var/client/who = null // we need a client to run MeasureText, don't ask me why
 			if(length(GLOB.clients)) 
 				who = GLOB.clients[1]
-			if(who)
 				var/new_y = I.pixel_y + text2num(splittext(who.MeasureText(S.maptext, width = S.maptext_width), "x")[2])
 				animate(I, pixel_y = new_y, time=2)
 			
