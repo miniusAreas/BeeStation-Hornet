@@ -26,6 +26,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 										//autocorrected this round, not that you'd need to check that.
 
 	var/UI_style = null
+	var/runescapechat = TRUE
 	var/buttons_locked = FALSE
 	var/hotkeys = FALSE
 	var/tgui_fancy = TRUE
@@ -513,6 +514,7 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 			dat += "<table><tr><td width='340px' height='300px' valign='top'>"
 			dat += "<h2>General Settings</h2>"
 			dat += "<b>UI Style:</b> <a href='?_src_=prefs;task=input;preference=ui'>[UI_style]</a><br>"
+			dat += "<b>See Runescape Chat: </b> <a href='?_src_=prefs;task=input;preference=runescapechat'>[runescapechat ? "Enabled" : "Disabled"]</a><br>"
 			dat += "<b>tgui Monitors:</b> <a href='?_src_=prefs;preference=tgui_lock'>[(tgui_lock) ? "Primary" : "All"]</a><br>"
 			dat += "<b>tgui Style:</b> <a href='?_src_=prefs;preference=tgui_fancy'>[(tgui_fancy) ? "Fancy" : "No Frills"]</a><br>"
 			dat += "<br>"
@@ -1583,6 +1585,9 @@ GLOBAL_LIST_EMPTY(preferences_datums)
 						UI_style = pickedui
 						if (parent && parent.mob && parent.mob.hud_used)
 							parent.mob.hud_used.update_ui_style(ui_style2icon(UI_style))
+				if("runescapechat")
+					runescapechat = !runescapechat
+
 				if("pda_style")
 					var/pickedPDAStyle = input(user, "Choose your PDA style.", "Character Preference", pda_style)  as null|anything in GLOB.pda_styles
 					if(pickedPDAStyle)

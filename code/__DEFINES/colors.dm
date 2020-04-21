@@ -58,3 +58,34 @@
 #define COLOR_ASSEMBLY_LBLUE   "#5D99BE"
 #define COLOR_ASSEMBLY_BLUE    "#38559E"
 #define COLOR_ASSEMBLY_PURPLE  "#6F6192"
+
+/proc/hsv2rgb(var/hue, var/sat, var/val)
+	var/hh
+	var/p
+	var/q
+	var/t
+	var/ff
+	var/i
+	if(sat <= 0)
+		return rgb(val*255,val*255,val*255)
+	hh = hue
+	hh %= 360
+	hh /= 60
+	i = round(hh)
+	ff = hh - i
+	p = val * (1-sat)
+	q = val * (1 - (sat * ff))
+	t = val * (1 - (sat * (1 - ff)))
+	switch(i)
+		if(0)
+			return rgb(val * 255, t * 255, p * 255)
+		if(1)
+			return rgb(q*255, val*255, p*255)
+		if(2)
+			return rgb(p*255, val*255, t*255)
+		if(3)
+			return rgb(p*255, q*255, val*255)
+		if(4)
+			return rgb(t*255, p*255, val*255)
+		else
+			return rgb(val*255, p*255, q*255)
