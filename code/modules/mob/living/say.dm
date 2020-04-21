@@ -327,7 +327,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	S.pixel_y = L.bound_height
 
 	for(var/client/C in show_to)
-		if(C.prefs.runescapechat)
+		if(C.prefs.runescapechat && C.mob.can_hear())
 			C.images += S
 
 	L.chattext.chats += S
@@ -345,7 +345,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 		animate(S, alpha = 0, pixel_y = new_y, time = 4)
 		spawn(4)
 			for(var/client/C in show_to)
-				if(C.prefs.runescapechat)
+				if(C.prefs.runescapechat && C.mob.can_hear())
 					C.images -= S
 			L.chattext.chats -= S
 			qdel(S)
