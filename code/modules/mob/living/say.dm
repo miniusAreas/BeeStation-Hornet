@@ -310,7 +310,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	if(!isliving(T))
 		return
 
-	message = copytext(message, 1, 128) // no super long messages
+	message = copytext(message, 1, 160) // no super long messages
 
 	var/mob/living/L = T
 
