@@ -126,7 +126,7 @@
 	var/last_heard_name = null
 	var/last_used_color = null
 
-obj/chattext
+/obj/chattext
 	var/list/chats = list()
 
 image/speech_text
