@@ -305,7 +305,7 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 
 	INVOKE_ASYNC(GLOBAL_PROC, /.proc/animate_speechbubble, I, speech_bubble_recipients, 30)
 
-/proc/show_speech_text(message, atom/T, var/list/show_to, duration)
+/proc/show_speech_text(message, mob/living/L, var/list/show_to, duration)
 
 	if(!isliving(T))
 		return
