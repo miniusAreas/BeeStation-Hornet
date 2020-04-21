@@ -129,6 +129,6 @@
 /obj/chattext
 	var/list/chats = list()
 
-image/speech_text
+/image/speech_text
 	maptext_width = (32*4)
 	alpha = 0
