@@ -144,7 +144,7 @@ SAVEFILE UPDATING/VERSIONING - 'Simplified', or rather, more coder-friendly ~Car
 	// temporary savefile bump
 	if(!(S & "runescapechat"))
 		WRITE_FILE(S["runescapechat"], TRUE)
-		runescapechat >> TRUE
+		runescapechat = TRUE
 	else
 		S["runescapechat"]		>> runescapechat
 	S["hotkeys"]			>> hotkeys
