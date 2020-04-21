@@ -329,14 +329,13 @@ GLOBAL_LIST_INIT(department_radio_keys, list(
 	for(var/client/C in show_to)
 		if(C.prefs.runescapechat)
 			C.images += S
+
 	L.chattext.chats += S
 	for(var/image/I in L.chattext.chats)
 		if(I != S)
-			var/client/who = null
-			for(var/client/C in GLOB.clients)
-				if(C && istype(C))
-					who = C
-					break
+			var/client/who = null // we need a client to run MeasureText, don't ask me why
+			if(length(GLOB.clients)) 
+				who = GLOB.clients[1]
 			if(who)
 				var/new_y = I.pixel_y + text2num(splittext(who.MeasureText(S.maptext, width = S.maptext_width), "x")[2])
 				animate(I, pixel_y = new_y, time=2)
