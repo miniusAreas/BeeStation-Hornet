@@ -229,7 +229,7 @@
 
 // This is so specific atoms can override these, and ignore certain ones
 /atom/proc/vars_to_save()
- 	return list("x","y","z","color","dir","name","pixel_x","pixel_y")+unique_save_vars //Do we really need to save color?
+ 	return list("x","y","z","color","dir","name","pixel_x","pixel_y","tagged_price")+unique_save_vars
 
 /atom/proc/get_persistent_metadata()
 	return
